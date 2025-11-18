@@ -1,1 +1,89 @@
-<!-- This is the main display page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emoji Stego Challenge</title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+      background: linear-gradient(135deg, #ff9bf5, #8acbff);
+      color: #222;
+      text-align: center;
+      padding: 40px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 3px 3px 0px #fff;
+    }
+
+    .screen {
+      background: #fefefe;
+      border-radius: 40px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2), inset 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .app-icon {
+      background: #fff;
+      border-radius: 22px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transition: transform 0.15s;
+      cursor: pointer;
+    }
+
+    .app-icon:active {
+      transform: scale(0.93);
+    }
+
+    .instructions {
+      font-size: 1.2rem;
+      margin-top: 25px;
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      background: #ddd;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Emoji Stego Challenge</h1>
+
+  <div class="screen">
+    <p class="instructions">Tap the apps... one of them contains your hidden stego emoji.</p>
+    <hr/>
+
+    <div class="app-grid">
+      <div class="app-icon">🎮</div>
+      <div class="app-icon">📸</div>
+      <div class="app-icon">📱</div>
+      <div class="app-icon">🎵</div>
+      <div class="app-icon">😀</div> <!-- your stego emoji spot -->
+      <div class="app-icon">💬</div>
+    </div>
+
+    <hr/>
+    <p class="instructions">Looks like a kid's iPad... but one emoji isn't what it seems.</p>
+  </div>
+</body>
+</html>
