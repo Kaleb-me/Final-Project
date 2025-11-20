@@ -72,8 +72,54 @@
   <div class="screen">
     <p class="instructions">This message was sent but I think there is more to it &#129300</u></p>
     <hr/>
+<<<<<<< HEAD
     <!-- Make an decrypt box -->
     <!-- There will be a message hidden somewhere -->
+=======
+
+    <div class="app-grid">
+      <div class="app-icon">🎮</div>
+      <div class="app-icon">📸</div>
+      <div class="app-icon">📱</div>
+      <div class="app-icon">🎵</div>
+      <div class="app-icon">😀</div> <!-- your stego emoji spot -->
+      <div class="app-icon">💬</div>
+    </div>
+
+    <script>
+    function variationSelectorToByte(ch) {
+        const code = ch.codePointAt(0);
+
+        if (0xFE00 <= code && code <= 0xFE0F) {
+            return code - 0xFE00;
+        }
+        if (0xE0100 <= code && code <= 0xE01EF) {
+            return code - 0xE0100 + 16;
+        }
+        return null;
+    }
+
+    function decode(str) {
+        let bytes = [];
+        let started = false;
+
+        for (const ch of str) {
+            const b = variationSelectorToByte(ch);
+
+            if (b !== null) {
+                bytes.push(b);
+                started = true;
+            } else if (started) {
+                break;
+            }
+        }
+
+        return bytes;
+    }
+
+</script>
+
+>>>>>>> ab8d796acaf5db9c5fb4bb4c0a32868b7fe8ca40
     <hr/>
     <p class="instructions">Looks like a kid's iPad... but one emoji isn't what it seems.</p>
   </div>
