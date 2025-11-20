@@ -82,6 +82,39 @@
       <div class="app-icon">💬</div>
     </div>
 
+    <script>
+    function variationSelectorToByte(ch) {
+        const code = ch.codePointAt(0);
+
+        if (0xFE00 <= code && code <= 0xFE0F) {
+            return code - 0xFE00;
+        }
+        if (0xE0100 <= code && code <= 0xE01EF) {
+            return code - 0xE0100 + 16;
+        }
+        return null;
+    }
+
+    function decode(str) {
+        let bytes = [];
+        let started = false;
+
+        for (const ch of str) {
+            const b = variationSelectorToByte(ch);
+
+            if (b !== null) {
+                bytes.push(b);
+                started = true;
+            } else if (started) {
+                break;
+            }
+        }
+
+        return bytes;
+    }
+
+</script>
+
     <hr/>
     <p class="instructions">Looks like a kid's iPad... but one emoji isn't what it seems.</p>
   </div>
