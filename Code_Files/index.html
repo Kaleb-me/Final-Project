@@ -1,113 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business</title>
-  <style>
-    body {
-      font-family: "Comic Sans MS", "Comic Sans", cursive;
-      background: linear-gradient(135deg, #ff9bf5, #8acbff);
-      color: #222;
-      text-align: center;
-      padding: 40px;
-      overflow-x: hidden;
-    }
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>🫧🎂󠅀󠅑󠅥󠅜󠅏󠄲󠅥󠅤󠅜󠅕󠅢󠅭 Stego For Good 🧹</title>
 
-    h1 {
-      font-size: 3rem;
-      text-shadow: 3px 3px 0px #fff;
-    }
+            <style>
+                body {
+                    background: linear-gradient(90deg, #ff84c4, #009159)
+                }
+            </style>
+        </head>
 
-    .screen {
-      background: #fefefe;
-      border-radius: 40px;
-      padding: 30px;
-      width: 90%;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 25px rgba(0,0,0,0.2), inset 0 0 10px rgba(0,0,0,0.1);
-    }
+        <body>
+            <h1>Stego For Good</h1>
+        <hr>
+            <p>I don't know how to use CSS 🤖👾💻, so I copied and pasted
+                a bunch of emojis 🤩😏 from some weird website to give this website some style! 🥳🤩
+            </p>
+            <p>But now that I think about it, the website was kinda sketchy... 🤨🧐 I think they were hiding a flag somewhere(e.g. byuctf{This_is_flag}). 🫣😳 Can you check if my website is hosting smuggled data? 📊</p>
+            <p>I think this website has something to do with this:👀󠅒󠅩󠅥󠅓󠅤󠅖󠅫󠅄󠅘󠅑󠅞󠅛󠅣󠅏󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄐󠄸󠅙󠅞󠅤󠄪󠄐󠅄󠅘󠅕󠅢󠅕󠄗󠅣󠄐󠅑󠅞󠄐󠅕󠅦󠅕󠅞󠄐󠅝󠅟󠅢󠅕󠄐󠅣󠅕󠅓󠅢󠅕󠅤󠅕󠅢󠄐󠅝󠅕󠅣󠅣󠅑󠅗󠅕󠄐󠅑󠅤󠄐󠅤󠅘󠅕󠄐󠅤󠅟󠅠󠄐󠅟󠅖󠄐󠅤󠅘󠅕󠄐󠅧󠅙󠅞󠅔󠅟󠅧󠄐󠄫󠄙 https://paulbutler.org/2025/smuggling-arbitrary-data-through-an-emoji/</p>
+           <form>
+            <br>Kaleb's All-Purpose Decoder 😎🤔󠅃󠅟󠅝󠅕󠅤󠅘󠅙󠅞󠅗󠄐󠅙󠅣󠄐󠅘󠅑󠅠󠅠󠅕󠅞󠅙󠅞󠅗<br>
+            <input type="text" id="input">
+           </form> 
+        </body>
 
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-      margin-top: 30px;
-    }
+        <button id="button">🔥LETS GOOOOO🔥󠅄󠅘󠅙󠅣󠄐󠅙󠅣󠄐󠅑󠄐󠅖󠅙󠅢󠅕󠄐󠅕󠅝󠅟󠅚󠅙</button>
+        <p>v Decoded input below v</p>
+        <p id="result"></p>
 
-    .app-icon {
-      background: #fff;
-      border-radius: 22px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.6rem;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-      transition: transform 0.15s;
-      cursor: pointer;
-    }
+        <!-- textbox needs to have id="input"-->
+        <!-- button needs to have id="button"-->
+        <!-- decoding result needs to have id="result"-->
 
-    .app-icon:active {
-      transform: scale(0.93);
-    }
+        <script>
+            const element = document.getElementById("button");
+            const inputElement = document.getElementById("input");
 
-    .instructions {
-      font-size: 1.2rem;
-      margin-top: 25px;
-    }
+            var string = document.getElementById("input").value;
+            element.addEventListener("click", onClick);
+            inputElement.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    onClick();
+                }
+            });
 
-    hr {
-      border: 0;
-      height: 2px;
-      background: #ddd;
-      margin: 30px 0;
-    }
-  </style>
-</head>
-<body>
-  <h1>Messages</h1>
+            function onClick() {
+                 var string = document.getElementById("input").value;
+                 decode(string);
 
-  <div class="screen">
-    <p class="instructions">This message was sent but I think there is more to it &#129300</u></p>
-    <!-- There will be a message hidden somewhere -->
-    <hr/>
-
-    <script id="decrypt">
-      function variationSelectorToByte(ch) {
-        const code = ch.codePointAt(0);
-
-        if (0xFE00 <= code && code <= 0xFE0F) {
-            return code - 0xFE00;
-        }
-        if (0xE0100 <= code && code <= 0xE01EF) {
-            return code - 0xE0100 + 16;
-        }
-        return null;
-      }
-
-      function decode(str) {
-          let bytes = [];
-          let started = false;
-
-          for (const ch of str) {
-            const b = variationSelectorToByte(ch);
-
-            if (b !== null) {
-                bytes.push(b);
-                started = true;
-            } else if (started) {
-                break;
             }
-          }
+            
+            function variationSelectorToByte(ch) {
+                const code = ch.codePointAt(0);
 
-          return bytes;
-      }
-    </script>
+                if (0xFE00 <= code && code <= 0xFE0F) {
+                    return code - 0xFE00;
+                }
+                if (0xE0100 <= code && code <= 0xE01EF) {
+                    return code - 0xE0100 + 16;
+                }
+                return null;
+            }
 
-    <hr/>
-    <p class="instructions">Looks like a kid's iPad... but one emoji isn't what it seems.</p>
-  </div>
-</body>
-</html>
+            function decode(str) {
+                let bytes = [];
+                let started = false;
+
+                // emojis to include in the website 🍕󠅝󠅩󠄳󠅄󠄶󠅫󠅄󠅘󠅑󠅞󠅛󠅣󠅏󠅀󠅑󠅥󠅜󠅏󠄲󠅥󠅤󠅜󠅕󠅢󠄪󠅘󠅤󠅤󠅠󠅣󠄪󠄟󠄟󠅠󠅑󠅥󠅜󠅒󠅥󠅤󠅜󠅕󠅢󠄞󠅟󠅢󠅗󠄟󠄢󠄠󠄢󠄥󠄟󠅣󠅝󠅥󠅗󠅗󠅜󠅙󠅞󠅗󠄝󠅑󠅢󠅒󠅙󠅤󠅢󠅑󠅢󠅩󠄝󠅔󠅑󠅤󠅑󠄝󠅤󠅘󠅢󠅟󠅥󠅗󠅘󠄝󠅑󠅞󠄝󠅕󠅝󠅟󠅚󠅙󠄟󠅭 😒 🥹 🧉
+
+                for (const ch of str) {
+                    const b = variationSelectorToByte(ch);
+
+                    if (b !== null) {
+                        bytes.push(b);
+                        started = true;
+                    } else if (started) {
+                        break;
+                    }
+                }
+
+                array = new Uint8Array(bytes);
+                text = new TextDecoder("utf-8").decode(array);
+                i = 0
+                if (text !== "") {
+                    document.getElementById("result").innerHTML = text;
+                }
+
+                else {
+                    document.getElementById("result").innerHTML = "No secret message here! 🤔󠅉󠅟󠅥󠄗󠅢󠅕󠄐󠅟󠅞󠄐󠅤󠅘󠅕󠄐󠅢󠅙󠅗󠅘󠅤󠄐󠅤󠅢󠅑󠅓󠅛󠄑";
+                }
+            }
+        </script>
+
+    </html>
+    
