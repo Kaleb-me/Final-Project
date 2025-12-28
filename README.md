@@ -1,17 +1,9 @@
 # Project :)
 Final project for BYU IT&amp;C 101. Web-based CTF cryptography/steg challenge.
 
-Project plan:
+Based on a blog post by Paul Butler, whos work inspired the creation of this challenge
+https://paulbutler.org/2025/smuggling-arbitrary-data-through-an-emoji/
 
-Front end
-html
-js
-css
-webpage
-host our decrpyter
-text box
 
-Backend
-python decrypter
 
 
